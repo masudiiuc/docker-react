@@ -1,0 +1,12 @@
+sudo: required
+language: generic
+
+services: 
+  - docker
+
+before_install: 
+  - docker build -t jsdebugger/docker-react -f Dockerfile.dev .
+
+script:
+  #- docker run -e CI=true jsdebugger/docker-react npm run test
+  - docker run jsdebugger/docker-react npm run test -- --coverage
